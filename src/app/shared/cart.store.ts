@@ -17,12 +17,14 @@ export class CartStore extends ComponentStore<CartState> {
     }
 
     get state(): CartState {
+
         return this.get();
     }
 
     readonly products$: Observable<Product[]> = this.select(state => state.products);
 
     readonly addProduct = this.updater((state: CartState, product: Product) => {
+
         return {
             ...state,
             products: [...state.products, product]
@@ -30,6 +32,7 @@ export class CartStore extends ComponentStore<CartState> {
     });
 
     readonly resetCart = this.updater((state: CartState) => {
+
         return DEFAULT_STATE;
     });
 

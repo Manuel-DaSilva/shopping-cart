@@ -6,7 +6,6 @@ import { CartStore } from '../shared/cart.store';
 @Component({
   selector: 'app-bill',
   templateUrl: './bill.component.html',
-  styleUrls: ['./bill.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BillComponent implements OnInit {
@@ -22,6 +21,7 @@ export class BillComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.cartStore.state$.subscribe(state => this.updateBillSummary(state));
   }
 
@@ -38,11 +38,13 @@ export class BillComponent implements OnInit {
   }
 
   payment(): void {
+
     this.cartPaid = true;
     this.cartService.payment();
   }
 
   reset(): void {
+
     this.cartService.reset();
   }
 }
