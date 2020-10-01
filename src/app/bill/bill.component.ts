@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CartService } from '../shared/cart.service';
 import { CartState } from '../shared/cart.state';
+import { CartStore } from '../shared/cart.store';
 
 @Component({
   selector: 'app-bill',
@@ -14,10 +15,14 @@ export class BillComponent implements OnInit {
   totalBill = 0;
   cartPaid = false;
 
-  constructor(private ref: ChangeDetectorRef, private cartService: CartService) {}
+  constructor(
+    private ref: ChangeDetectorRef,
+    private cartService: CartService,
+    private readonly cartStore: CartStore
+  ) {}
 
   ngOnInit(): void {
-    this.cartService.store.state$.subscribe(state => this.updateBillSummary(state));
+    this.cartStore.state$.subscribe(state => this.updateBillSummary(state));
   }
 
   updateBillSummary(state: CartState): void {
@@ -34,7 +39,6 @@ export class BillComponent implements OnInit {
 
   payment(): void {
     this.cartPaid = true;
-
     this.cartService.payment();
   }
 

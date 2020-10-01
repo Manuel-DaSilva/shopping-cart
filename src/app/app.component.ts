@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartService } from './shared/cart.service';
+import { CartStore } from './shared/cart.store';
 import { Product } from './shared/product.interface';
 
 @Component({
@@ -13,13 +13,13 @@ export class AppComponent implements OnInit{
 
   products$: Observable<Product[]>;
 
-  constructor(private cartService: CartService) {}
+  constructor(private readonly cartStore: CartStore) {}
 
   ngOnInit(): void {
-    this.products$ = this.cartService.store.products$;
+    this.products$ = this.cartStore.products$;
   }
 
   removeProduct(prod: Product): void {
-    this.cartService.store.removeProduct(prod);
+    this.cartStore.removeProduct(prod);
   }
 }

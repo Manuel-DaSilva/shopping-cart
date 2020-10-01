@@ -8,10 +8,6 @@ export class CartService {
 
   constructor(private readonly cartStore: CartStore) { }
 
-  get store(): CartStore {
-    return this.cartStore;
-  }
-
   payment(): void {
     console.log('Paying:');
     console.log(this.cartStore.state);
