@@ -1,0 +1,26 @@
+<div class="card">
+    <header class="card-header">
+      <p class="card-header-title has-text-centered">
+        Bill resume
+      </p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <ng-container *ngIf="totalProducts > 0 else noProducts">
+          <p>Total products: {{totalProducts}}</p>
+          <h4>Bill total: <span class="has-text-weight-bold">{{totalBill | currency}}</span></h4>
+        </ng-container>
+        <ng-template #noProducts>
+          There are no products added to your bill
+        </ng-template>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <a href="#" class="card-footer-item" (click)="reset()">Delete all</a>
+      <a href="#" class="card-footer-item" (click)="payment()">Pay</a>
+    </footer>
+</div>
+<div class="notification is-success mt-3" *ngIf="cartPaid">
+  <button class="delete" (click)="cartPaid = false"></button>
+  Cart successfully paid!
+</div>

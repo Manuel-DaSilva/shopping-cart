@@ -1,0 +1,27 @@
+<div class="notification">
+  <p class="has-text-weight-bold mb-3">Store</p>
+  <div class="box" *ngFor="let prod of products">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-128x128">
+          <img [src]="prod.image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>{{prod.name}}</strong>
+            <br>
+          </p>
+            <small>
+              {{prod.description}}
+            </small>
+          <h6>
+             {{prod.price | currency}} 
+          </h6>
+          <button class="button is-success" (click)="addProduct(prod)">Add</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
